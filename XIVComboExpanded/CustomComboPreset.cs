@@ -240,7 +240,7 @@ namespace XIVComboExpandedestPlugin
         // ====================================================================================
         #region DANCER
 
-        // latest enum: 3814
+        // latest enum: 3815
 
         [OrderedEnum]
         [SecretCustomCombo]
@@ -254,9 +254,9 @@ namespace XIVComboExpandedestPlugin
         DancerSingleTargetMultibutton = 3804,
 
         [OrderedEnum]
-        [ConflictingCombos(DancerSingleTargetProcs)]
+        [ConflictingCombos(DancerSingleTargetProcsLight)]
         [CustomComboInfo("Single Target Multibutton Light", "Change Cascade into procs and combos as available, save Fountainfall and ReverseCascade when possible", DNC.JobID, DNC.Cascade)]
-        DancerSingleTargetMultibutton = 3804,
+        DancerSingleTargetMultibutton = 3815,
 
         [OrderedEnum]
         [ConflictingCombos(DancerSingleTargetMultibutton)]
