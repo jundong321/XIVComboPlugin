@@ -170,6 +170,9 @@ namespace XIVComboExpandedestPlugin.Combos
         {
             if (actionID == DNC.Flourish)
             {
+                if (level >= DNC.Devilment && CanUseAction(DNC.Devilment) && IsEnabled(DancerFlourishDevilmentFeature))
+                    return DNC.Devilment;
+
                 if (level >= DNC.Levels.FanDance3 && HasEffect(DNC.Buffs.ThreefoldFanDance))
                     return DNC.FanDance3;
             }
@@ -238,10 +241,10 @@ namespace XIVComboExpandedestPlugin.Combos
             return actionID;
         }
     }
-    
+
     internal class DancerSingleTargetAttackEco : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargeAttackEco;
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetAttackEco;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
@@ -286,7 +289,7 @@ namespace XIVComboExpandedestPlugin.Combos
 
     internal class DancerSingleTargetAttackBurst : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargeAttackBurst;
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetAttackBurst;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
@@ -377,7 +380,7 @@ namespace XIVComboExpandedestPlugin.Combos
             return actionID;
         }
     }
-    
+
     internal class DancerAoeAttackEco : CustomCombo
     {
         protected override CustomComboPreset Preset => CustomComboPreset.DancerAoeAttackEco;
