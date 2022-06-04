@@ -70,6 +70,7 @@ namespace XIVComboExpandedestPlugin.Combos
                 Bloodshower = 45,
                 FanDance3 = 66,
                 TechnicalStep = 70,
+                SaberDance = 76,
                 Tillana = 82,
                 FanDance4 = 86,
                 StarfallDance = 90;
@@ -220,18 +221,19 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
 
-    internal class DancerSingleTargetMultibuttonLight : CustomCombo
+    internal class DancerSingleTargetMultibuttonPlus : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetMultibuttonLight;
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetMultibuttonPlus;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             if (actionID == DNC.Cascade)
             {
+                var gauge = GetJobGauge<DNCGauge>();
                 // Saber Dance if about to overflow.
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
                     return DNC.SaberDance;
-                
+
                 // Try to use Fountain, but use FoutainFall if FountainFall is ready.
                 if (lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountain)
                 {
@@ -325,7 +327,7 @@ namespace XIVComboExpandedestPlugin.Combos
                 var gauge = GetJobGauge<DNCGauge>();
 
                 // Expiring Starfall Dance.
-                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.StarfallDance) && FindEffect(DNC.Buffs.StarfallDance).RemainingTime <= 2.5) 
+                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall) && FindEffect(DNC.Buffs.FlourishingStarfall).RemainingTime <= 2.5)
                     return DNC.StarfallDance;
 
                 // Saber Dance if available.
