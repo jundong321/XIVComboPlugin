@@ -171,9 +171,6 @@ namespace XIVComboExpandedestPlugin.Combos
         {
             if (actionID == DNC.Flourish)
             {
-                if (level >= DNC.Levels.Devilment && CanUseAction(DNC.Devilment) && IsEnabled(CustomComboPreset.DancerFlourishDevilmentFeature))
-                    return DNC.Devilment;
-
                 if (level >= DNC.Levels.FanDance3 && HasEffect(DNC.Buffs.ThreefoldFanDance))
                     return DNC.FanDance3;
             }
