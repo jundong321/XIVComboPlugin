@@ -302,7 +302,7 @@ namespace XIVComboExpandedestPlugin
         [OrderedEnum]
         [CustomComboInfo("Flourish to Fan Dance III", "Change Flourish into Fan Dance III when it is ready.\nTakes priority over Fan Dance IV if Flourish to Fan Dance IV is active.", DNC.JobID, DNC.Flourish)]
         DancerFlourishFanDance3Feature = 3810,
-        
+
         [OrderedEnum]
         [ParentCombo(DancerFlourishFanDance3Feature)]
         [CustomComboInfo("Flourish to Devilment", "Additionally change Flourish into Devilment when it is ready.", DNC.JobID, DNC.Flourish)]
