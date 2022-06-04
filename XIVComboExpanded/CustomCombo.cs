@@ -273,7 +273,7 @@ namespace XIVComboExpandedestPlugin.Combos
         /// <returns>A value indicating if the effect exists and is about to expire.</returns>
         protected static bool HasEffectExpiring(ushort effectID)
         {
-            var status = FindEffect(effectID)
+            var status = FindEffect(effectID);
             return (status is not null) && (status.RemainingTime <= 2.5);
         }
 
