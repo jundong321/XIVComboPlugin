@@ -250,18 +250,18 @@ namespace XIVComboExpandedestPlugin
 
         [OrderedEnum]
         [ConflictingCombos(DancerSingleTargetProcs)]
-        [CustomComboInfo("Single Target Multibutton", "Change Cascade into procs and combos as available.", DNC.JobID, DNC.Cascade)]
+        [CustomComboInfo("Single Target to Procs", "Change Single-Target actions into Procs when available.", DNC.JobID, DNC.Cascade, DNC.Fountain)]
         DancerSingleTargetMultibutton = 3804,
 
         [OrderedEnum]
-        [ConflictingCombos(DancerSingleTargetProcsLight)]
-        [CustomComboInfo("Single Target Multibutton Light", "Change Cascade into procs and combos as available, save Fountainfall and ReverseCascade when possible", DNC.JobID, DNC.Cascade)]
-        DancerSingleTargetMultibutton = 3815,
+        [ConflictingCombos(DancerSingleTargetMultibutton)]
+        [CustomComboInfo("Single Target Multibutton", "Change Cascade into procs and combos as available.", DNC.JobID, DNC.Cascade)]
+        DancerSingleTargetProcs = 3811,
 
         [OrderedEnum]
-        [ConflictingCombos(DancerSingleTargetMultibutton)]
-        [CustomComboInfo("Single Target to Procs", "Change Single-Target actions into Procs when available.", DNC.JobID, DNC.Cascade, DNC.Fountain)]
-        DancerSingleTargetProcs = 3811,
+        [ConflictingCombos(DancerSingleTargetMultibuttonLight)]
+        [CustomComboInfo("Single Target Multibutton Light", "Change Cascade into procs and combos as available, save Fountainfall and ReverseCascade when possible", DNC.JobID, DNC.Cascade)]
+        DancerSingleTargetProcsLight = 3815,
 
         [OrderedEnum]
         [ConflictingCombos(DancerAoeProcs)]
