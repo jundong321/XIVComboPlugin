@@ -38,4 +38,4 @@ For some jobs, this frees a massive amount of hotbar space (looking at you, DRG)
 
 ---
 
-Place `https://github.com/grammernatzi/MyDalamudPlugins/raw/master/pluginmaster.json` in your /xlsettings 3rd party repo list to access this plugin.
+Place `https://github.com/jundong321/MyDalamudPlugins/raw/master/pluginmaster.json` in your /xlsettings 3rd party repo list to access this plugin.
