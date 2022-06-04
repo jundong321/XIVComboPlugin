@@ -228,12 +228,16 @@ namespace XIVComboExpandedestPlugin.Combos
         {
             if (actionID == DNC.Cascade)
             {
+                // Saber Dance if about to overflow.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
+                    return DNC.SaberDance;
+                
                 // Try to use Fountain, but use FoutainFall if FountainFall is ready.
                 if (lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountain)
                 {
                     if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
                         return DNC.Fountainfall;
-                    return DNC.Fountain
+                    return DNC.Fountain;
                 }
 
                 // Use ReverseCascade
@@ -322,11 +326,11 @@ namespace XIVComboExpandedestPlugin.Combos
 
                 // Expiring Starfall Dance.
                 if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.StarfallDance) && FindEffect(DNC.Buffs.StarfallDance).RemainingTime <= 2.5) 
-                    return DNC.StarfallDance
+                    return DNC.StarfallDance;
 
                 // Saber Dance if available.
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
-                    return DNC.SaberDance
+                    return DNC.SaberDance;
 
                 // Fountain fall.
                 if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
