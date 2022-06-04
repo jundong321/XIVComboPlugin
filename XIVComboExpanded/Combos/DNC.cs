@@ -290,7 +290,7 @@ namespace XIVComboExpandedestPlugin.Combos
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DNC.SaberDance)
+            if (actionID == DNC.Fountain)
             {
                 var gauge = GetJobGauge<DNCGauge>();
 
@@ -310,11 +310,15 @@ namespace XIVComboExpandedestPlugin.Combos
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
                     return DNC.SaberDance;
 
+                // Expiring Fountain.
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                    return DNC.Fountain;
+
                 // Fountain fall.
                 if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
                     return DNC.Fountainfall;
 
-                // Cascade
+                // ReverseCascade
                 if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
                     return DNC.ReverseCascade;
 
@@ -380,7 +384,7 @@ namespace XIVComboExpandedestPlugin.Combos
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DNC.Cascade)
+            if (actionID == DNC.Windmill)
             {
                 var gauge = GetJobGauge<DNCGauge>();
 
@@ -425,7 +429,7 @@ namespace XIVComboExpandedestPlugin.Combos
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DNC.SaberDance)
+            if (actionID == DNC.Bladeshower)
             {
                 var gauge = GetJobGauge<DNCGauge>();
 
@@ -444,6 +448,10 @@ namespace XIVComboExpandedestPlugin.Combos
                 // Saber Dance if available.
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
                     return DNC.SaberDance;
+
+                // Expiring Bladeshower.
+                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill && comboTime <= 2.5)
+                    return DNC.Bladeshower;
 
                 // Bloodshower.
                 if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
