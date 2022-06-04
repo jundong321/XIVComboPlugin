@@ -239,7 +239,7 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
     
-    internal class DancerSingleTargeAttackEco : CustomCombo
+    internal class DancerSingleTargetAttackEco : CustomCombo
     {
         protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargeAttackEco;
 
@@ -284,7 +284,7 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
 
-    internal class DancerSingleTargeAttackBurst : CustomCombo
+    internal class DancerSingleTargetAttackBurst : CustomCombo
     {
         protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargeAttackBurst;
 
@@ -378,9 +378,9 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
     
-    internal class DanceAoeAttackEco : CustomCombo
+    internal class DancerAoeAttackEco : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.DanceAoeAttackEco;
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerAoeAttackEco;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
