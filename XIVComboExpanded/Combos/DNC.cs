@@ -47,7 +47,8 @@ namespace XIVComboExpandedestPlugin.Combos
                 TechnicalStep = 1819,
                 ThreefoldFanDance = 1820,
                 FourfoldFanDance = 2699,
-                TechnicalFinish = 1822;
+                TechnicalFinish = 1822,
+                Devilment = 1825;
         }
 
         public static class Debuffs
@@ -219,6 +220,33 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
 
+    internal class DancerSingleTargetMultibuttonLight : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetMultibuttonLight;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == DNC.Cascade)
+            {
+                // Try to use Fountain, but use FoutainFall if FountainFall is ready.
+                if (lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountain)
+                {
+                    if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                        return DNC.Fountainfall;
+                    return DNC.Fountain
+                }
+
+                // Use ReverseCascade
+                if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
+                return DNC.Cascade;
+            }
+
+            return actionID;
+        }
+    }
+
     internal class DancerSingleTargetProcs : CustomCombo
     {
         protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetProcs;
@@ -277,6 +305,43 @@ namespace XIVComboExpandedestPlugin.Combos
             if (actionID == DNC.Bladeshower)
                 if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
                     return DNC.Bloodshower;
+
+            return actionID;
+        }
+    }
+
+    internal class SaberDanceBurstSingle : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.SaberDanceBurstSingle;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == DNC.SaberDance)
+            {
+                var gauge = GetJobGauge<DNCGauge>();
+
+                // Expiring Starfall Dance.
+                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.StarfallDance) && FindEffect(DNC.Buffs.StarfallDance).RemainingTime <= 2.5) 
+                    return DNC.StarfallDance
+
+                // Saber Dance if available.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                    return DNC.SaberDance
+
+                // Fountain fall.
+                if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                    return DNC.Fountainfall;
+
+                // Cascade
+                if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
+                // Cascade Combo
+                if (lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountain)
+                    return DNC.Fountain;
+
+                return DNC.Cascade;
+            }
 
             return actionID;
         }

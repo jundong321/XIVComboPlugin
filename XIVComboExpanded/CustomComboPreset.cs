@@ -240,7 +240,7 @@ namespace XIVComboExpandedestPlugin
         // ====================================================================================
         #region DANCER
 
-        // latest enum: 3813
+        // latest enum: 3814
 
         [OrderedEnum]
         [SecretCustomCombo]
@@ -251,6 +251,11 @@ namespace XIVComboExpandedestPlugin
         [OrderedEnum]
         [ConflictingCombos(DancerSingleTargetProcs)]
         [CustomComboInfo("Single Target Multibutton", "Change Cascade into procs and combos as available.", DNC.JobID, DNC.Cascade)]
+        DancerSingleTargetMultibutton = 3804,
+
+        [OrderedEnum]
+        [ConflictingCombos(DancerSingleTargetProcs)]
+        [CustomComboInfo("Single Target Multibutton Light", "Change Cascade into procs and combos as available, save Fountainfall and ReverseCascade when possible", DNC.JobID, DNC.Cascade)]
         DancerSingleTargetMultibutton = 3804,
 
         [OrderedEnum]
@@ -284,6 +289,10 @@ namespace XIVComboExpandedestPlugin
         [OrderedEnum]
         [CustomComboInfo("Flourish to Fan Dance III", "Change Flourish into Fan Dance III when it is ready.\nTakes priority over Fan Dance IV if Flourish to Fan Dance IV is active.", DNC.JobID, DNC.Flourish)]
         DancerFlourishFanDance3Feature = 3810,
+
+        [OrderedEnum]
+        [CustomComboInfo("Saber Dance Burst Single", "Change Saber dance into next optimal single target action in burst window", DNC.JobID, DNC.SaberDance)]
+        SaberDanceBurstSingle = 3814,
 
         [OrderedEnum]
         [CustomComboInfo("Devilment Feature", "Change Devilment into Starfall Dance after use.", DNC.JobID, DNC.Devilment)]
