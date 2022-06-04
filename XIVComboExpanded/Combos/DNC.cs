@@ -221,21 +221,52 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
 
-    internal class DancerSingleTargetMultibuttonPlus : CustomCombo
+    internal class DancerSingleTargetProcs : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetMultibuttonPlus;
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetProcs;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == DNC.Cascade)
+                if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
+            if (actionID == DNC.Fountain)
+                if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                    return DNC.Fountainfall;
+
+            return actionID;
+        }
+    }
+    
+    internal class DancerSingleTargeAttackEco : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargeAttackEco;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             if (actionID == DNC.Cascade)
             {
                 var gauge = GetJobGauge<DNCGauge>();
+
+                // Expiring Starfall Dance.
+                if (level >= DNC.Levels.StarfallDance && HasEffectExpiring(DNC.Buffs.FlourishingStarfall))
+                    return DNC.StarfallDance;
+
+                // Expiring FountainFall.
+                if (level >= DNC.Levels.Fountainfall && (HasEffectExpiring(DNC.Buffs.FlourishingFlow) || HasEffectExpiring(DNC.Buffs.SilkenFlow)))
+                    return DNC.Fountainfall;
+
+                // Expiring ReverseCascade.
+                if (level >= DNC.Levels.ReverseCascade && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
                 // Saber Dance if about to overflow.
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
                     return DNC.SaberDance;
 
                 // Try to use Fountain, but use FoutainFall if FountainFall is ready.
-                if (lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountain)
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
                 {
                     if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
                         return DNC.Fountainfall;
@@ -253,19 +284,46 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
 
-    internal class DancerSingleTargetProcs : CustomCombo
+    internal class DancerSingleTargeAttackBurst : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetProcs;
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargeAttackBurst;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DNC.Cascade)
+            if (actionID == DNC.SaberDance)
+            {
+                var gauge = GetJobGauge<DNCGauge>();
+
+                // Expiring Starfall Dance.
+                if (level >= DNC.Levels.StarfallDance && HasEffectExpiring(DNC.Buffs.FlourishingStarfall))
+                    return DNC.StarfallDance;
+
+                // Expiring FountainFall.
+                if (level >= DNC.Levels.Fountainfall && (HasEffectExpiring(DNC.Buffs.FlourishingFlow) || HasEffectExpiring(DNC.Buffs.SilkenFlow)))
+                    return DNC.Fountainfall;
+
+                // Expiring ReverseCascade.
+                if (level >= DNC.Levels.ReverseCascade && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
+                // Saber Dance if available.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                    return DNC.SaberDance;
+
+                // Fountain fall.
+                if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                    return DNC.Fountainfall;
+
+                // Cascade
                 if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
                     return DNC.ReverseCascade;
 
-            if (actionID == DNC.Fountain)
-                if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
-                    return DNC.Fountainfall;
+                // Cascade Combo
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
+                    return DNC.Fountain;
+
+                return DNC.Cascade;
+            }
 
             return actionID;
         }
@@ -315,10 +373,55 @@ namespace XIVComboExpandedestPlugin.Combos
             return actionID;
         }
     }
-
-    internal class SaberDanceBurstSingle : CustomCombo
+    
+    internal class DanceAoeAttackEco : CustomCombo
     {
-        protected override CustomComboPreset Preset => CustomComboPreset.SaberDanceBurstSingle;
+        protected override CustomComboPreset Preset => CustomComboPreset.DanceAoeAttackEco;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == DNC.Cascade)
+            {
+                var gauge = GetJobGauge<DNCGauge>();
+
+                // Expiring Starfall Dance.
+                if (level >= DNC.Levels.StarfallDance && HasEffectExpiring(DNC.Buffs.FlourishingStarfall))
+                    return DNC.StarfallDance;
+
+                // Expiring Bloodshower.
+                if (level >= DNC.Levels.Bloodshower && (HasEffectExpiring(DNC.Buffs.FlourishingFlow) || HasEffectExpiring(DNC.Buffs.SilkenFlow)))
+                    return DNC.Bloodshower;
+
+                // Expiring RisingWindmill.
+                if (level >= DNC.Levels.RisingWindmill && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.RisingWindmill;
+
+                // Saber Dance if about to overflow.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
+                    return DNC.SaberDance;
+
+                // Try to use Bladeshower, but use Bloodshower if Bloodshower is ready.
+                if (lastComboMove == DNC.Windmill && level >= DNC.Levels.Bladeshower)
+                {
+                    if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                        return DNC.Bloodshower;
+                    return DNC.Bladeshower;
+                }
+
+                // Use RisingWindmill
+                if (level >= DNC.Levels.RisingWindmill && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.RisingWindmill;
+
+                return DNC.Windmill;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class DancerAoeAttackBurst : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerAoeAttackBurst;
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
@@ -327,26 +430,34 @@ namespace XIVComboExpandedestPlugin.Combos
                 var gauge = GetJobGauge<DNCGauge>();
 
                 // Expiring Starfall Dance.
-                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall) && FindEffect(DNC.Buffs.FlourishingStarfall).RemainingTime <= 2.5)
+                if (level >= DNC.Levels.StarfallDance && HasEffectExpiring(DNC.Buffs.FlourishingStarfall))
                     return DNC.StarfallDance;
+
+                // Expiring Bloodshower.
+                if (level >= DNC.Levels.Bloodshower && (HasEffectExpiring(DNC.Buffs.FlourishingFlow) || HasEffectExpiring(DNC.Buffs.SilkenFlow)))
+                    return DNC.Bloodshower;
+
+                // Expiring RisingWindmill.
+                if (level >= DNC.Levels.RisingWindmill && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.RisingWindmill;
 
                 // Saber Dance if available.
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
                     return DNC.SaberDance;
 
-                // Fountain fall.
-                if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
-                    return DNC.Fountainfall;
+                // Bloodshower.
+                if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                    return DNC.Bloodshower;
 
-                // Cascade
-                if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
-                    return DNC.ReverseCascade;
+                // RisingWindmill
+                if (level >= DNC.Levels.RisingWindmill && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.RisingWindmill;
 
-                // Cascade Combo
-                if (lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountain)
-                    return DNC.Fountain;
+                // Windmill Combo
+                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill)
+                    return DNC.Bladeshower;
 
-                return DNC.Cascade;
+                return DNC.Windmill;
             }
 
             return actionID;

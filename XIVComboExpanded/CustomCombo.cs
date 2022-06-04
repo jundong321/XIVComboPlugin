@@ -266,6 +266,18 @@ namespace XIVComboExpandedestPlugin.Combos
         protected static bool HasEffect(ushort effectID) => FindEffect(effectID) is not null;
 
         /// <summary>
+        /// Find if an effect on the player exists and is about to expire.
+        /// The effect may be owned by the player or unowned.
+        /// </summary>
+        /// <param name="effectID">Status effect ID.</param>
+        /// <returns>A value indicating if the effect exists and is about to expire.</returns>
+        protected static bool HasEffectExpiring(ushort effectID)
+        {
+            var status = FindEffect(effectID)
+            return (status is not null) && (status.RemainingTime <= 2.5);
+        }
+
+        /// <summary>
         /// Finds an effect on the player.
         /// The effect must be owned by the player or unowned.
         /// </summary>

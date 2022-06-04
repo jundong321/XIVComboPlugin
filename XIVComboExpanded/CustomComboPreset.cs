@@ -240,7 +240,7 @@ namespace XIVComboExpandedestPlugin
         // ====================================================================================
         #region DANCER
 
-        // latest enum: 3815
+        // latest enum: 3817
 
         [OrderedEnum]
         [SecretCustomCombo]
@@ -260,18 +260,31 @@ namespace XIVComboExpandedestPlugin
 
         [OrderedEnum]
         [ConflictingCombos(DancerSingleTargetProcs, DancerSingleTargetMultibutton)]
-        [CustomComboInfo("Single Target Multibutton Plus", "Change Cascade into procs and combos as available, save Fountainfall and ReverseCascade when possible", DNC.JobID, DNC.Cascade)]
-        DancerSingleTargetMultibuttonPlus = 3815,
+        [CustomComboInfo("Single Target Attack Eco", "Change Cascade into procs, combos, saber dance, and starfall dance as available, save resources for burst window whenever possible(Eco)", DNC.JobID, DNC.Cascade)]
+        DancerSingleTargeAttackEco = 3814,
 
         [OrderedEnum]
-        [ConflictingCombos(DancerAoeProcs)]
+        [CustomComboInfo("Single Target Attack Burst", "Change Fountain into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Cascade)]
+        DancerSingleTargeAttackBurst = 3815,
+
+        [OrderedEnum]
+        [ConflictingCombos(DancerAoeProcs, DanceAoeAttackEco)]
         [CustomComboInfo("AoE Multibutton", "Change Windmill into procs and combos as available.", DNC.JobID, DNC.Windmill)]
         DancerAoeMultibutton = 3805,
 
         [OrderedEnum]
-        [ConflictingCombos(DancerAoeMultibutton)]
+        [ConflictingCombos(DancerAoeMultibutton, DanceAoeAttackEco)]
         [CustomComboInfo("AoE to Procs", "Change AoE actions into procs when available.", DNC.JobID, DNC.Windmill, DNC.Bladeshower)]
         DancerAoeProcs = 3812,
+
+        [OrderedEnum]
+        [ConflictingCombos(DancerAoeMultibutton, DancerAoeProcs)]
+        [CustomComboInfo("AoE Attack Eco", "Change Windmill into procs, combos, saber dance, and starfall dance as available, save resources for burst window whenever possible(Eco)", DNC.JobID, DNC.Cascade)]
+        DanceAoeAttackEco = 3816,
+
+        [OrderedEnum]
+        [CustomComboInfo("AoE Attack Burst", "Change Bladeshower into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Cascade)]
+        DancerAoeAttackBurst = 3817,
 
         [OrderedEnum]
         [CustomComboInfo("Fan Dance Combos", "Change Fan Dance and Fan Dance 2 into Fan Dance 3 while under Threefold Fan Dance.", DNC.JobID, DNC.FanDance1, DNC.FanDance2)]
@@ -291,8 +304,8 @@ namespace XIVComboExpandedestPlugin
         DancerFlourishFanDance3Feature = 3810,
 
         [OrderedEnum]
-        [CustomComboInfo("Saber Dance Burst Single", "Change Saber dance into next optimal single target action in burst window", DNC.JobID, DNC.SaberDance)]
-        SaberDanceBurstSingle = 3814,
+        [CustomComboInfo("Single Target Attack Eco", "Change Fountain into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Cascade)]
+        DancerSingleTargeAttackBurst = 3814,
 
         [OrderedEnum]
         [CustomComboInfo("Devilment Feature", "Change Devilment into Starfall Dance after use.", DNC.JobID, DNC.Devilment)]
