@@ -68,6 +68,7 @@ namespace XIVComboExpandedestPlugin.Combos
                 RisingWindmill = 35,
                 Fountainfall = 40,
                 Bloodshower = 45,
+                Devilment = 62,
                 FanDance3 = 66,
                 TechnicalStep = 70,
                 SaberDance = 76,
