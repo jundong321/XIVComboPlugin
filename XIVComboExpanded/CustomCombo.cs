@@ -274,7 +274,7 @@ namespace XIVComboExpandedestPlugin.Combos
         protected static bool HasEffectExpiring(ushort effectID)
         {
             var status = FindEffect(effectID);
-            return (status is not null) && (status.RemainingTime <= 2.5);
+            return (status is not null) && (status.RemainingTime <= 3);
         }
 
         /// <summary>
