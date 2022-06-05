@@ -240,7 +240,7 @@ namespace XIVComboExpandedestPlugin
         // ====================================================================================
         #region DANCER
 
-        // latest enum: 3818
+        // latest enum: 3819
 
         [OrderedEnum]
         [SecretCustomCombo]
@@ -264,7 +264,7 @@ namespace XIVComboExpandedestPlugin
         DancerSingleTargetAttackEco = 3814,
 
         [OrderedEnum]
-        [CustomComboInfo("Single Target Attack Burst", "Change Fountain into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Fountain)]
+        [CustomComboInfo("Single Target Attack Burst", "Change Cascade into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Fountain)]
         DancerSingleTargetAttackBurst = 3815,
 
         [OrderedEnum]
@@ -289,6 +289,10 @@ namespace XIVComboExpandedestPlugin
         [OrderedEnum]
         [CustomComboInfo("AoE Attack Burst", "Change Bladeshower into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Bladeshower)]
         DancerAoeAttackBurst = 3817,
+
+        [OrderedEnum]
+        [CustomComboInfo("AoE Attack all in one", "Change Windmill into procs, combos, saber dance, and starfall dance", DNC.JobID, DNC.Windmill)]
+        DancerAoeAttack = 3819,
 
         [OrderedEnum]
         [CustomComboInfo("Fan Dance Combos", "Change Fan Dance and Fan Dance 2 into Fan Dance 3 while under Threefold Fan Dance.", DNC.JobID, DNC.FanDance1, DNC.FanDance2)]
