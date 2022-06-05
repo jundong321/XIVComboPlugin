@@ -363,7 +363,7 @@ namespace XIVComboExpandedestPlugin.Combos
                 // Fountainfall if Fountain combo ready
                 if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
                     return DNC.Fountainfall;
-]
+
                 // Saber Dance if >= 50 Esprit and under Technical Finish
                 if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50 && HasEffect(DNC.Buffs.TechnicalFinish))
                     return DNC.SaberDance;
