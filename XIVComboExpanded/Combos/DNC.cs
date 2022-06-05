@@ -334,6 +334,77 @@ namespace XIVComboExpandedestPlugin.Combos
         }
     }
 
+    internal class DancerSingleTargetAttack : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.DancerSingleTargetAttack;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == DNC.Cascade)
+            {
+                var gauge = GetJobGauge<DNCGauge>();
+
+                // Expiring Starfall Dance.
+                if (level >= DNC.Levels.StarfallDance && HasEffectExpiring(DNC.Buffs.FlourishingStarfall))
+                    return DNC.StarfallDance;
+
+                // Expiring FountainFall.
+                if (level >= DNC.Levels.Fountainfall && (HasEffectExpiring(DNC.Buffs.FlourishingFlow) || HasEffectExpiring(DNC.Buffs.SilkenFlow)))
+                    return DNC.Fountainfall;
+
+                // Expiring ReverseCascade.
+                if (level >= DNC.Levels.ReverseCascade && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
+                // Burst window
+                if (level >= DNC.Levels.Devilment && HasEffect(DNC.Buffs.Devilment))
+                {
+                    // Saber Dance if available.
+                    if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                        return DNC.SaberDance;
+
+                    // Expiring Fountain.
+                    if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                        return DNC.Fountain;
+
+                    // Fountain fall.
+                    if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                        return DNC.Fountainfall;
+
+                    // ReverseCascade
+                    if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                        return DNC.ReverseCascade;
+
+                    // Cascade Combo
+                    if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
+                        return DNC.Fountain;
+
+                    return DNC.Cascade
+                }
+
+                // Saber Dance if about to overflow.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
+                    return DNC.SaberDance;
+
+                // Try to use Fountain, but use FoutainFall if FountainFall is ready.
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
+                {
+                    if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                        return DNC.Fountainfall;
+                    return DNC.Fountain;
+                }
+
+                // Use ReverseCascade
+                if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                    return DNC.ReverseCascade;
+
+                return DNC.Cascade;
+            }
+
+            return actionID;
+        }
+    }
+
     internal class DancerAoeMultibutton : CustomCombo
     {
         protected override CustomComboPreset Preset => CustomComboPreset.DancerAoeMultibutton;

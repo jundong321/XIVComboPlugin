@@ -240,7 +240,7 @@ namespace XIVComboExpandedestPlugin
         // ====================================================================================
         #region DANCER
 
-        // latest enum: 3817
+        // latest enum: 3818
 
         [OrderedEnum]
         [SecretCustomCombo]
@@ -266,6 +266,10 @@ namespace XIVComboExpandedestPlugin
         [OrderedEnum]
         [CustomComboInfo("Single Target Attack Burst", "Change Fountain into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Fountain)]
         DancerSingleTargetAttackBurst = 3815,
+
+        [OrderedEnum]
+        [CustomComboInfo("Single Target Attack all in one", "Change Fountain into procs, combos, saber dance, and starfall dance as available, save resources when not in burst window and maximize damage in burst window", DNC.JobID, DNC.Fountain)]
+        DancerSingleTargetAttack = 3818,
 
         [OrderedEnum]
         [ConflictingCombos(DancerAoeProcs, DancerAoeAttackEco)]
