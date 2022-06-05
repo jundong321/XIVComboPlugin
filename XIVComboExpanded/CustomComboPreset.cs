@@ -268,7 +268,7 @@ namespace XIVComboExpandedestPlugin
         DancerSingleTargetAttackBurst = 3815,
 
         [OrderedEnum]
-        [CustomComboInfo("Single Target Attack all in one", "Change Fountain into procs, combos, saber dance, and starfall dance as available, save resources when not in burst window and maximize damage in burst window", DNC.JobID, DNC.Fountain)]
+        [CustomComboInfo("Single Target Attack all in one", "Change Fountain into procs, combos, saber dance, and starfall dance", DNC.JobID, DNC.Cascade)]
         DancerSingleTargetAttack = 3818,
 
         [OrderedEnum]
