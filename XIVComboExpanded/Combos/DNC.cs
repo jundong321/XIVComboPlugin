@@ -344,43 +344,60 @@ namespace XIVComboExpandedestPlugin.Combos
             {
                 var gauge = GetJobGauge<DNCGauge>();
 
-                // Starfall Dance if about to expire
+                // Expiring Starfall Dance.
                 if (level >= DNC.Levels.StarfallDance && HasEffectExpiring(DNC.Buffs.FlourishingStarfall))
                     return DNC.StarfallDance;
 
-                // Fountainfall if about to expire
+                // Expiring FountainFall.
                 if (level >= DNC.Levels.Fountainfall && (HasEffectExpiring(DNC.Buffs.FlourishingFlow) || HasEffectExpiring(DNC.Buffs.SilkenFlow)))
                     return DNC.Fountainfall;
 
-                // Reverse Cascade if about to expire
+                // Expiring ReverseCascade.
                 if (level >= DNC.Levels.ReverseCascade && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
                     return DNC.ReverseCascade;
 
-                // Saber Dance if >= 85 Esprit
-                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
-                    return DNC.SaberDance;
+                // Saber Dance if espirit >= 85.
+                    if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
+                        return DNC.SaberDance;
 
-                // Fountainfall if Fountain combo ready
-                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
-                    return DNC.Fountainfall;
+                // Expiring Fountain.
+                    if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                        return DNC.Fountain;
 
-                // Saber Dance if >= 50 Esprit and under Technical Finish
-                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50 && HasEffect(DNC.Buffs.TechnicalFinish))
-                    return DNC.SaberDance;
+                // Burst window
+                if (HasEffect(DNC.Buffs.TechnicalFinish))
+                {
+                    // Saber Dance if available.
+                    if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                        return DNC.SaberDance;
 
-                // Fountainfall
-                if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
-                    return DNC.Fountainfall;
+                    // Fountain fall.
+                    if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                        return DNC.Fountainfall;
 
-                // Reverse Cascade
+                    // ReverseCascade
+                    if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
+                        return DNC.ReverseCascade;
+
+                    // Cascade Combo
+                    if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
+                        return DNC.Fountain;
+
+                    return DNC.Cascade;
+                }
+
+                // Try to use Fountain, but use FoutainFall if FountainFall is ready.
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
+                {
+                    if (level >= DNC.Levels.Fountainfall && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                        return DNC.Fountainfall;
+                    return DNC.Fountain;
+                }
+
+                // Use ReverseCascade
                 if (level >= DNC.Levels.ReverseCascade && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
                     return DNC.ReverseCascade;
 
-                // Fountain combo
-                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
-                    return DNC.Fountain;
-
-                // Cascade
                 return DNC.Cascade;
             }
 
