@@ -379,7 +379,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade)
                         return DNC.Fountain;
 
-                    return DNC.Cascade
+                    return DNC.Cascade;
                 }
 
                 // Saber Dance if about to overflow.
