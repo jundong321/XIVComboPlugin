@@ -312,7 +312,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.SaberDance;
 
                 // Expiring Fountain.
-                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 3)
                     return DNC.Fountain;
 
                 // Fountain fall.
@@ -361,7 +361,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.SaberDance;
 
                 // Expiring Fountain.
-                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 3)
                     return DNC.Fountain;
 
                 // Burst window
@@ -432,7 +432,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.SaberDance;
 
                 // Expiring Fountain.
-                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 3)
                     return DNC.Fountain;
 
                 // Burst window
@@ -471,11 +471,8 @@ namespace XIVComboExpandedestPlugin.Combos
 
                 return DNC.Cascade;
             }
-
-            return actionID;
-        }
-
-        if (actionID == DNC.Fountain)
+ 
+            if (actionID == DNC.Fountain)
             {
                 var gauge = GetJobGauge<DNCGauge>();
 
@@ -496,7 +493,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.SaberDance;
 
                 // Expiring Fountain.
-                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 2.5)
+                if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 3)
                     return DNC.Fountain;
                 
                 // Starfall dance if available.
@@ -639,7 +636,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.SaberDance;
 
                 // Expiring Bladeshower.
-                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill && comboTime <= 2.5)
+                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill && comboTime <= 3)
                     return DNC.Bladeshower;
 
                 // Bloodshower.
@@ -688,7 +685,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.SaberDance;
 
                 // Expiring Bladeshower.
-                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill && comboTime <= 2.5)
+                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill && comboTime <= 3)
                     return DNC.Bladeshower;
 
                 // Burst window.

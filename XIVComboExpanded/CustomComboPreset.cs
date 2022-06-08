@@ -264,7 +264,7 @@ namespace XIVComboExpandedestPlugin
         DancerSingleTargetAttackEco = 3814,
 
         [OrderedEnum]
-        [CustomComboInfo("Single Target Attack Burst", "Change Cascade into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Fountain)]
+        [CustomComboInfo("Single Target Attack Burst", "Change Fountain into procs, combos, saber dance, and starfall dance as available, maximize damage for burst window", DNC.JobID, DNC.Fountain)]
         DancerSingleTargetAttackBurst = 3815,
 
         [OrderedEnum]
@@ -272,7 +272,7 @@ namespace XIVComboExpandedestPlugin
         DancerSingleTargetAttack = 3818,
 
         [OrderedEnum]
-        [CustomComboInfo("Single Target Attack all in two", "Change Cascade and Fountain into procs, combos, saber dance, and starfall dance. Cascade => all in one, Faountain => Burst.", DNC.JobID, DNC.Cascade, DNC.Fountain)]
+        [CustomComboInfo("Single Target Attack all in two", "Change Cascade and Fountain into procs, combos, saber dance, and starfall dance. Cascade => all in one, Fountain => Burst.", DNC.JobID, DNC.Cascade, DNC.Fountain)]
         DancerSingleTargetAttackTwo = 3820,
 
         [OrderedEnum]
