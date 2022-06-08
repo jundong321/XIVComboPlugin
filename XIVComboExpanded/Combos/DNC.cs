@@ -472,7 +472,7 @@ namespace XIVComboExpandedestPlugin.Combos
                 return DNC.Cascade;
             }
  
-            if (actionID == DNC.Fountain)
+            if (actionID == DNC.StarfallDance)
             {
                 var gauge = GetJobGauge<DNCGauge>();
 
