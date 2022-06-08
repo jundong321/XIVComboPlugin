@@ -497,7 +497,7 @@ namespace XIVComboExpandedestPlugin.Combos
                     return DNC.Fountain;
                 
                 // Starfall dance if available.
-                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall))1
+                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall))
                     return DNC.StarfallDance;
 
                 // Fountain fall.
