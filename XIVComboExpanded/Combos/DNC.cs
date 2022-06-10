@@ -488,14 +488,18 @@ namespace XIVComboExpandedestPlugin.Combos
                 if (level >= DNC.Levels.ReverseCascade && (HasEffectExpiring(DNC.Buffs.FlourishingSymmetry) || HasEffectExpiring(DNC.Buffs.SilkenSymmetry)))
                     return DNC.ReverseCascade;
 
-                // Saber Dance if available.
-                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                // Saber Dance if espirit >= 85.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 85)
                     return DNC.SaberDance;
 
                 // Expiring Fountain.
                 if (level >= DNC.Levels.Fountain && lastComboMove == DNC.Cascade && comboTime <= 3)
                     return DNC.Fountain;
-                
+
+                // Saber Dance if available.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                    return DNC.SaberDance;
+
                 // Starfall dance if available.
                 if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall))
                     return DNC.StarfallDance;
@@ -688,43 +692,28 @@ namespace XIVComboExpandedestPlugin.Combos
                 if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill && comboTime <= 3)
                     return DNC.Bladeshower;
 
-                // Burst window.
-                if (HasEffect(DNC.Buffs.TechnicalFinish))
-                {
-                    // Saber Dance if available.
-                    if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
-                        return DNC.SaberDance;
+                // Saber Dance if available.
+                if (level >= DNC.Levels.SaberDance && gauge.Esprit >= 50)
+                    return DNC.SaberDance;
 
-                    // Bloodshower.
-                    if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
-                        return DNC.Bloodshower;
+                // Starfall dance if available.
+                if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall))
+                    return DNC.StarfallDance;
 
-                    // RisingWindmill.
-                    if (level >= DNC.Levels.RisingWindmill && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
-                        return DNC.RisingWindmill;
+                // Bloodshower.
+                if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
+                    return DNC.Bloodshower;
 
-                    // Bladeshower Combo
-                    if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill)
-                        return DNC.Bladeshower;
-
-                    return DNC.Windmill;
-                }
-
-                // Try to use Bladeshower, but use Bloodshower if Bloodshower is ready.
-                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill)
-                {
-                    if (level >= DNC.Levels.Bloodshower && (HasEffect(DNC.Buffs.FlourishingFlow) || HasEffect(DNC.Buffs.SilkenFlow)))
-                        return DNC.Bloodshower;
-                    return DNC.Bladeshower;
-                }
-
-                // Use RisingWindmill
+                // RisingWindmill.
                 if (level >= DNC.Levels.RisingWindmill && (HasEffect(DNC.Buffs.FlourishingSymmetry) || HasEffect(DNC.Buffs.SilkenSymmetry)))
                     return DNC.RisingWindmill;
 
+                // Bladeshower Combo
+                if (level >= DNC.Levels.Bladeshower && lastComboMove == DNC.Windmill)
+                    return DNC.Bladeshower;
+
                 return DNC.Windmill;
             }
-
             return actionID;
         }
     }
